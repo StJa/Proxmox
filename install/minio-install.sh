@@ -38,16 +38,16 @@ fi
 msg_info "Installing MinIO (Patience)"
 $STD apt-get install -y minio
 
-echo "MINIO_ROOT_USER=minioadmin" > /etc/default/minio
-echo "MINIO_ROOT_PASSWORD=${MINIOADMINPASSWORD}" >> /etc/default/minio
-echo "MINIO_VOLUMES=\"http://minio{1...${MINIONUMINSTANCES}}.${MINIODNSSUFFIX}:9000/mnt/disk{1...${MINIONUMDISKS}}/minio\"" >> /etc/default/minio
-echo "MINIO_SERVER_URL=\"http://minio.${MINIODNSSUFFIX}:9000\"" >> /etc/default/minio
-echo "MINIO_OPTS=\"\"" >> /etc/default/minio
+$STD echo "MINIO_ROOT_USER=minioadmin" > /etc/default/minio
+$STD echo "MINIO_ROOT_PASSWORD=${MINIOADMINPASSWORD}" >> /etc/default/minio
+$STD echo "MINIO_VOLUMES=\"http://minio{1...${MINIONUMINSTANCES}}.${MINIODNSSUFFIX}:9000/mnt/disk{1...${MINIONUMDISKS}}/minio\"" >> /etc/default/minio
+$STD echo "MINIO_SERVER_URL=\"http://minio.${MINIODNSSUFFIX}:9000\"" >> /etc/default/minio
+$STD echo "MINIO_OPTS=\"\"" >> /etc/default/minio
 
-groupadd -r minio-user
-useradd -M -r -g minio-user minio-user
-mkdir /mnt/disk{1...${MINIONUMDISKS}}
-chown minio-user:minio-user /mnt/disk{1...${MINIONUMDISKS}}
+$STD groupadd -r minio-user
+$STD useradd -M -r -g minio-user minio-user
+$STD mkdir /mnt/disk{1...${MINIONUMDISKS}}
+$STD chown minio-user:minio-user /mnt/disk{1...${MINIONUMDISKS}}
 
 $STD systemctl enable minio
 $STD systemctl start minio
