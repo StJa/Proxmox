@@ -22,9 +22,14 @@ msg_ok "Installed Dependencies"
 
 read -r -p "What is your domain for nextcloud: " NEXTCLOUDDNS
 read -r -p "Do you want Nextcloud office to be installed: " NEXTCLOUDOFFICE
+if [[ $NEXTCLOUDOFFICE == "y" ]]; then
+  NEXTCLOUDOFFICE="y"
+else
+  NEXTCLOUDOFFICE="n"
+fi
 
 msg_info "Installing NextCloud (Patience)"
-$STD bash <(curl -fsSL https://codeberg.org/criegerde/nextcloud-zero/raw/branch/master/debian.sh | sed "s/NEXTCLOUDDNS=\"ihre.domain.de\"/NEXTCLOUDDNS=\"${NEXTCLOUDDNS}\"/g" | sed "s/NEXTCLNEXTCLOUDOFFICE=\"n\"/NEXTCLOUDOFFICE=\"${nextcloudoffice}\"/g")
+$STD bash <(curl -fsSL https://codeberg.org/criegerde/nextcloud-zero/raw/branch/master/debian.sh | sed "s/NEXTCLOUDDNS=\"ihre.domain.de\"/NEXTCLOUDDNS=\"${NEXTCLOUDDNS}\"/g" | sed "s/NEXTCLNEXTCLOUDOFFICE=\"n\"/NEXTCLOUDOFFICE=\"${NEXTCLOUDOFFICE}\"/g")
 msg_ok "Installed NextCloud"
 
 motd_ssh
