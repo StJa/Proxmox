@@ -36,7 +36,8 @@ if [[ $MINIOADMINPASSWORD == "" ]]; then
 fi
 
 msg_info "Installing MinIO (Patience)"
-$STD apt-get install -y minio
+$STD wget https://dl.min.io/server/minio/release/linux-amd64/archive/minio_20230619195250.0.0_amd64.deb -O minio.deb
+$STD sudo dpkg -i minio.deb
 
 $STD echo "MINIO_ROOT_USER=minioadmin" > /etc/default/minio
 $STD echo "MINIO_ROOT_PASSWORD=${MINIOADMINPASSWORD}" >> /etc/default/minio
