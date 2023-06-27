@@ -28,8 +28,14 @@ else
   NEXTCLOUDOFFICE="n"
 fi
 
+read -r -p "Do you want Nextcloud office to be installed: " TRUSTEDPROXY
+
+
 msg_info "Installing NextCloud (Patience)"
 $STD bash <(curl -fsSL https://codeberg.org/criegerde/nextcloud-zero/raw/branch/master/debian.sh | sed "s/NEXTCLOUDDNS=\"ihre.domain.de\"/NEXTCLOUDDNS=\"${NEXTCLOUDDNS}\"/g" | sed "s/NEXTCLNEXTCLOUDOFFICE=\"n\"/NEXTCLOUDOFFICE=\"${NEXTCLOUDOFFICE}\"/g")
+if [[ $TRUSTEDPROXY != "" ]]; then
+  nocc config:system:set trusted_proxies 0 --value="$TRUSTEDPROXY"
+fi
 msg_ok "Installed NextCloud"
 
 motd_ssh

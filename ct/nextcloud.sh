@@ -52,10 +52,9 @@ function default_settings() {
 
 function update_script() {
 header_info
-if [[ ! -f /lib/systemd/system/nextcloud-domain.service ]]; then msg_error "No ${APP} Installation Found!"; exit; fi
+if [[ ! -f /home/Nextcloud-Installationsskript/install.log ]]; then msg_error "No ${APP} Installation Found!"; exit; fi
 msg_info "Updating ${APP} LXC"
-apt-get update &>/dev/null
-apt-get -y upgrade &>/dev/null
+bash <(wget https://codeberg.org/criegerde/nextcloud/raw/branch/master/skripte/update.sh)
 msg_ok "Updated Successfully"
 exit
 }
