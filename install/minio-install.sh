@@ -39,11 +39,11 @@ msg_info "Installing MinIO (Patience)"
 $STD wget https://dl.min.io/server/minio/release/linux-amd64/archive/minio_20230619195250.0.0_amd64.deb -O minio.deb
 $STD dpkg -i minio.deb
 
-$STD echo "MINIO_ROOT_USER=minioadmin" > /etc/default/minio
-$STD echo "MINIO_ROOT_PASSWORD=${MINIOADMINPASSWORD}" >> /etc/default/minio
-$STD echo "MINIO_VOLUMES=\"http://minio{1...${MINIONUMINSTANCES}}.${MINIODNSSUFFIX}:9000/mnt/disk{1...${MINIONUMDISKS}}/minio\"" >> /etc/default/minio
-$STD echo "MINIO_SERVER_URL=\"http://minio.${MINIODNSSUFFIX}:9000\"" >> /etc/default/minio
-$STD echo "MINIO_OPTS=\"\"" >> /etc/default/minio
+echo "MINIO_ROOT_USER=minioadmin" > /etc/default/minio
+echo "MINIO_ROOT_PASSWORD=${MINIOADMINPASSWORD}" >> /etc/default/minio
+echo "MINIO_VOLUMES=\"http://minio{1...${MINIONUMINSTANCES}}.${MINIODNSSUFFIX}:9000/mnt/disk{1...${MINIONUMDISKS}}/minio\"" >> /etc/default/minio
+echo "MINIO_SERVER_URL=\"http://minio.${MINIODNSSUFFIX}:9000\"" >> /etc/default/minio
+echo "MINIO_OPTS=\"\"" >> /etc/default/minio
 
 $STD groupadd -r minio-user
 $STD useradd -M -r -g minio-user minio-user
