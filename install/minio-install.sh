@@ -45,12 +45,12 @@ $STD sudo echo "MINIO_VOLUMES=\"http://minio{1...${MINIONUMINSTANCES}}.${MINIODN
 $STD sudo echo "MINIO_SERVER_URL=\"http://minio.${MINIODNSSUFFIX}:9000\"" >> /etc/default/minio
 $STD sudo echo "MINIO_OPTS=\"\"" >> /etc/default/minio
 
-#$STD sudo groupadd -r minio-user
-#$STD sudo useradd -M -r -g minio-user minio-user
-#$STD sudo mkdir -p /mnt/disk{1..${MINIONUMDISKS}}
-#$STD sudo chown minio-user:minio-user /mnt/disk{1..${MINIONUMDISKS}}
+$STD sudo groupadd -r minio-user
+$STD sudo useradd -M -r -g minio-user minio-user
+$STD sudo mkdir -p /mnt/disk{1..${MINIONUMDISKS}}
+$STD sudo chown minio-user:minio-user /mnt/disk{1..${MINIONUMDISKS}}
 
-#$STD sudo systemctl enable minio
+$STD sudo systemctl enable minio
 #$STD sudo systemctl start minio
 
 msg_ok "Installed MinIO"
