@@ -47,8 +47,8 @@ $STD sudo echo "MINIO_OPTS=\"\"" >> /etc/default/minio
 
 $STD sudo groupadd -r minio-user
 $STD sudo useradd -M -r -g minio-user minio-user
-$STD sudo mkdir -p /mnt/disk{1..${MINIONUMDISKS}}
-$STD sudo chown minio-user:minio-user /mnt/disk{1..${MINIONUMDISKS}}
+$STD eval "sudo mkdir -p /mnt/disk{1..${MINIONUMDISKS}}"
+$STD eval "sudo chown minio-user:minio-user /mnt/disk{1..${MINIONUMDISKS}}"
 
 $STD sudo systemctl enable minio
 #$STD sudo systemctl start minio
