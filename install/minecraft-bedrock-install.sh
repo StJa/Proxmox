@@ -20,19 +20,16 @@ $STD apt-get install -y mc
 msg_ok "Installed Dependencies"
 
 
-read -r -p "What is your domain for MinecraftBedrockServer: " NEXTCLOUDDNS
-read -r -p "Do you want MinecraftBedrockServer office to be installed: " NEXTCLOUDOFFICE
-if [[ $NEXTCLOUDOFFICE == "y" ]]; then
-  NEXTCLOUDOFFICE="y"
+read -r -p "Do you want MinecraftBedrockServer office to be installed: " MINECRAFTVAR
+if [[ $MINECRAFTVAR == "y" ]]; then
+  MINECRAFTVAR="y"
 else
-  NEXTCLOUDOFFICE="n"
+  MINECRAFTVAR="n"
 fi
-
-read -r -p "Do you want MinecraftBedrockServer office to be installed: " TRUSTEDPROXY
 
 
 msg_info "Installing MinecraftBedrockServer (Patience)"
-$STD bash <(curl -fsSL https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/SetupMinecraft.sh | sed "s/NEXTCLOUDDNS=\"ihre.domain.de\"/NEXTCLOUDDNS=\"${NEXTCLOUDDNS}\"/g" | sed "s/NEXTCLNEXTCLOUDOFFICE=\"n\"/NEXTCLOUDOFFICE=\"${NEXTCLOUDOFFICE}\"/g")
+$STD bash <(curl -fsSL https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/SetupMinecraft.sh)
 msg_ok "Installed MinecraftBedrockServer"
 
 motd_ssh
