@@ -19,6 +19,10 @@ $STD apt-get install -y sudo
 $STD apt-get install -y mc
 msg_ok "Installed Dependencies"
 
+$STD addgroup --system minecraft
+$STD adduser --system --home /opt/minecraft --shell /usr/sbin/nologin --no-create-home --gecos 'minecraft' --ingroup minecraft --disabled-login --disabled-password minecraft
+mkdir -p /opt/minecraft/bin
+mkdir -p /opt/minecraft/data
 
 read -r -p "Do you want MinecraftBedrockServer office to be installed: " MINECRAFTVAR
 if [[ $MINECRAFTVAR == "y" ]]; then
@@ -29,7 +33,7 @@ fi
 
 
 msg_info "Installing MinecraftBedrockServer (Patience)"
-$STD bash <(curl -fsSL https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/SetupMinecraft.sh)
+$STD su minecraft -c bash <(curl -fsSL https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/SetupMinecraft.sh)
 msg_ok "Installed MinecraftBedrockServer"
 
 motd_ssh
